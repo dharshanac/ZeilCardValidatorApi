@@ -5,7 +5,7 @@ using ZeilCardValidatorApi.Application.Services;
 namespace ZeilCardValidatorApi.CardsValidatorApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/cards-validation")]
     public class CardsValidationController : ControllerBase
     {
         private readonly ILuhnService _luhnService;
