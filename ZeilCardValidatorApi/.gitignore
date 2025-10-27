@@ -1,0 +1,41 @@
+# Build directories
+bin/
+obj/
+
+# Visual Studio / Rider / VS Code
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vscode/
+
+# NuGet packages
+*.nupkg
+packages/
+# If using PackageReference
+*.nuget/
+
+# ASP.NET temporary files
+wwwroot/lib/
+
+# Logs
+*.log
+
+# Environment / local config files
+.env
+appsettings.Development.json
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+ehthumbs.db
+Icon?
+.DS_Store
+
+# JetBrains Rider
+.idea/
+
+# Windows image file caches
+*.stackdump
