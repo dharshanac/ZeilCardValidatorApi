@@ -31,5 +31,22 @@ namespace ZeilCardValidatorApi.Application.Services
             }
             return sum % 10 == 0;
         }
+
+        public string Mask(string rawCardNumber)
+        {
+            if (string.IsNullOrWhiteSpace(rawCardNumber))
+                return string.Empty;
+
+            var digitsOnly = rawCardNumber.NormalizeCardNumber();
+            var length = digitsOnly.Length;
+            if (length == 0)
+                return string.Empty;
+
+            if (length <= 4)
+                return new string('*', length);
+
+            var visible = digitsOnly.Substring(length - 4);
+            return new string('*', length - 4) + visible;
+        }
     }
 }

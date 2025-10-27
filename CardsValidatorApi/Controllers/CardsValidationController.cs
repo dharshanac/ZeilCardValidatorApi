@@ -35,8 +35,13 @@ namespace ZeilCardValidatorApi.CardsValidatorApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult PostValidate([FromBody] ValidateRequest request)
         {
+            var masked = _luhnService.Mask(request.CardNumber);
+
+            // IMPORTANT: Do not log full card numbers. Log masked only.
+            _logger.LogInformation("Validating card number {CardMasked}", masked);
+
             var isValid = _luhnService.Validate(request.CardNumber);
-            return Ok(new { request.CardNumber, IsValid = isValid });
+            return Ok(new { CardNumber = masked, IsValid = isValid });
         }
     }
 }
