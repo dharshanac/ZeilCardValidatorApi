@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeilCardValidatorApi", "ZeilCardValidatorApi.csproj", "{5E81947D-E342-45AD-8770-AE0BF36B65DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeilCardValidatorApi", "ZeilCardValidatorApi.csproj", "{BBFFE58B-570F-4C61-9225-B34846E658CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Debug|x64.Build.0 = Debug|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Debug|x86.Build.0 = Debug|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Release|x64.ActiveCfg = Release|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Release|x64.Build.0 = Release|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Release|x86.ActiveCfg = Release|Any CPU
-		{5E81947D-E342-45AD-8770-AE0BF36B65DD}.Release|x86.Build.0 = Release|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Debug|x64.Build.0 = Debug|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Debug|x86.Build.0 = Debug|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Release|x64.ActiveCfg = Release|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Release|x64.Build.0 = Release|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Release|x86.ActiveCfg = Release|Any CPU
+		{BBFFE58B-570F-4C61-9225-B34846E658CA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

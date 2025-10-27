@@ -1,4 +1,7 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using ZeilCardValidatorApi.Application.Services;
+using ZeilCardValidatorApi.Application.Validators;
 using ZeilCardValidatorApi.CardsValidatorApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// FluentValidation
+builder.Services.AddFluentValidationAutoValidation(); // Enables auto-validation
+builder.Services.AddValidatorsFromAssemblyContaining<CreditCardRequestValidator>();
+
+// Application services
 builder.Services.AddScoped<ILuhnService, LuhnService>();
 
 var app = builder.Build();

@@ -17,8 +17,23 @@ namespace ZeilCardValidatorApi.CardsValidatorApi.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] ValidateRequest request)
+        /// <summary>
+        /// Validate a credit card number using the Luhn algorithm.
+        /// </summary>
+        /// <remarks>
+        /// Example request:
+        /// POST /api/validate
+        /// {
+        /// "cardNumber": "4242 4242 4242 4242"
+        /// }
+        /// </remarks>
+        /// <param name="request">Request body containing the card number.</param>
+        /// <returns>JSON payload indicating whether the card number passes Luhn.
+        /// The response will not contain the full card number. Only a masked version is returned for display.</returns>
+        [HttpPost("validate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult PostValidate([FromBody] ValidateRequest request)
         {
             var isValid = _luhnService.Validate(request.CardNumber);
             return Ok(new { request.CardNumber, IsValid = isValid });
