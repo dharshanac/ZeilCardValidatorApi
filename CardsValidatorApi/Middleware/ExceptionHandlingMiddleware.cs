@@ -1,4 +1,5 @@
-﻿using ZeilCardValidatorApi.Domain.Exceptions;
+﻿using Microsoft.AspNetCore.Mvc;
+using ZeilCardValidatorApi.Domain.Exceptions;
 
 namespace ZeilCardValidatorApi.CardsValidatorApi.Middleware
 {
@@ -24,47 +25,59 @@ namespace ZeilCardValidatorApi.CardsValidatorApi.Middleware
             catch (FluentValidation.ValidationException ex)
             {
                 _logger.LogWarning(ex, "Validation error");
+
                 var errors = ex.Errors
                     .GroupBy(e => e.PropertyName)
                     .ToDictionary(g => g.Key, g => g.Select(e => e.ErrorMessage).ToArray());
 
-                context.Response.StatusCode = 400;
-                await context.Response.WriteAsJsonAsync(new
+                var problem = new ValidationProblemDetails(errors)
                 {
-                    type = "https://httpstatuses.com/400",
-                    title = "Validation Failed",
-                    status = 400,
-                    errors,
-                    traceId = context.TraceIdentifier
-                });
+                    Type = "https://httpstatuses.com/400",
+                    Title = "Validation Failed",
+                    Status = StatusCodes.Status400BadRequest,
+                    Instance = context.Request.Path
+                };
+                problem.Extensions["traceId"] = context.TraceIdentifier;
+
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await context.Response.WriteAsJsonAsync(problem);
             }
             catch (DomainValidationException ex)
             {
                 _logger.LogWarning(ex, "Domain validation error");
-                context.Response.StatusCode = 400;
-                await context.Response.WriteAsJsonAsync(new
+
+                var problem = new ProblemDetails
                 {
-                    type = "https://httpstatuses.com/400",
-                    title = ex.GetType().Name,
-                    status = 400,
-                    detail = ex.Message,
-                    errorCode = ex.ErrorCode,
-                    traceId = context.TraceIdentifier,
-                });
+                    Type = "https://httpstatuses.com/400",
+                    Title = ex.GetType().Name,
+                    Status = StatusCodes.Status400BadRequest,
+                    Detail = ex.Message,
+                    Instance = context.Request.Path
+                };
+                problem.Extensions["errorCode"] = ex.ErrorCode;
+                problem.Extensions["traceId"] = context.TraceIdentifier;
+
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await context.Response.WriteAsJsonAsync(problem);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Unexpected error");
-                context.Response.StatusCode = 500;
-                await context.Response.WriteAsJsonAsync(new
+
+                var problem = new ProblemDetails
                 {
-                    type = "https://httpstatuses.com/500",
-                    title = "Internal Server Error",
-                    status = 500,
-                    detail = ex.Message,
-                    traceId = context.TraceIdentifier,
-                    stackTrace = _env.IsDevelopment() ? ex.StackTrace : null
-                });
+                    Type = "https://httpstatuses.com/500",
+                    Title = "Internal Server Error",
+                    Status = StatusCodes.Status500InternalServerError,
+                    Detail = ex.Message,
+                    Instance = context.Request.Path
+                };
+                problem.Extensions["traceId"] = context.TraceIdentifier;
+                if (_env.IsDevelopment())
+                    problem.Extensions["stackTrace"] = ex.StackTrace;
+
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                await context.Response.WriteAsJsonAsync(problem);
             }
         }
     }
