@@ -37,6 +37,7 @@ namespace ZeilCardValidatorApi.CardsValidatorApi.Middleware
                     Status = StatusCodes.Status400BadRequest,
                     Instance = context.Request.Path
                 };
+
                 problem.Extensions["traceId"] = context.TraceIdentifier;
 
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
@@ -54,6 +55,7 @@ namespace ZeilCardValidatorApi.CardsValidatorApi.Middleware
                     Detail = ex.Message,
                     Instance = context.Request.Path
                 };
+
                 problem.Extensions["errorCode"] = ex.ErrorCode;
                 problem.Extensions["traceId"] = context.TraceIdentifier;
 
@@ -72,7 +74,9 @@ namespace ZeilCardValidatorApi.CardsValidatorApi.Middleware
                     Detail = ex.Message,
                     Instance = context.Request.Path
                 };
+
                 problem.Extensions["traceId"] = context.TraceIdentifier;
+
                 if (_env.IsDevelopment())
                     problem.Extensions["stackTrace"] = ex.StackTrace;
 

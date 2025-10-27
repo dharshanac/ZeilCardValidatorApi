@@ -1,12 +1,10 @@
 ﻿using System.Text.RegularExpressions;
+using ZeilCardValidatorApi.Application.Extensions;
 
 namespace ZeilCardValidatorApi.Application.Services
 {
     public class LuhnService : ILuhnService
     {
-        // Remove spaces and dashes
-        private static readonly Regex _cleanup = new("[\\s-]+", RegexOptions.Compiled);
-
         public bool Validate(string rawCardNumber)
         {
             if (string.IsNullOrWhiteSpace(rawCardNumber))
@@ -14,7 +12,7 @@ namespace ZeilCardValidatorApi.Application.Services
 
             int sum = 0;
             bool alternate = false;
-            var digitsOnly = _cleanup.Replace(rawCardNumber, string.Empty);
+            var digitsOnly = rawCardNumber.NormalizeCardNumber();
 
             for (int i = digitsOnly.Length - 1; i >= 0; i--)
             {
