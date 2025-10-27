@@ -2,7 +2,7 @@
 using ZeilCardValidatorApi.Application.DTOs;
 using ZeilCardValidatorApi.Application.Services;
 
-namespace ZeilCardValidatorApi.CardsValidatorApi
+namespace ZeilCardValidatorApi.CardsValidatorApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -17,15 +17,11 @@ namespace ZeilCardValidatorApi.CardsValidatorApi
             _logger = logger;
         }
 
-
-        [HttpGet("test")]
-        public IActionResult Test() => Ok("API is working");
-
         [HttpPost]
         public IActionResult Post([FromBody] ValidateRequest request)
         {
             var isValid = _luhnService.Validate(request.CardNumber);
-            return Ok(new { CardNumber = request.CardNumber, IsValid = isValid });
+            return Ok(new { request.CardNumber, IsValid = isValid });
         }
     }
 }

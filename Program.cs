@@ -1,4 +1,5 @@
 using ZeilCardValidatorApi.Application.Services;
+using ZeilCardValidatorApi.CardsValidatorApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ILuhnService, LuhnService>();
 
 var app = builder.Build();
+
+// Middleware
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
